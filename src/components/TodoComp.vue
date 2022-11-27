@@ -2,17 +2,19 @@
   <div class="all-todos">
     <!-- make a list of todos -->
     <div class="card">
-      <ul class="todo-list">
-        <li class="todo-list-item" v-for="todo in todos" :key="todo.id">
+      <ul class="todo-list" @dragover.prevent @dragenter.prevent>
+        <li
+          class="todo-list-item drag-el"
+          draggable="true"
+          @dragstart="startDrag($event, todo)"
+          v-for="todo in todos"
+          :key="todo.id"
+        >
           <label class="todo-list-item-label">
             <input type="checkbox" @onClick="markDone" />
             <span class="todo-list-item-text">{{ todo.name }}</span>
           </label>
-          <span
-            class="delete-todo"
-            title="Delete todo"
-            @click="deleteTodo"
-            style="background-image: url('../assets/images/ICON-CROSS.svg')"
+          <span class="delete-todo" title="Delete todo" @click="deleteTodo"
             ><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
               <path
                 fill="#494C6B"
@@ -30,7 +32,7 @@
         <div class="todo-status">
           <router-link to="/">All</router-link>
           <router-link to="/active">Active</router-link>
-          <router-link to="/completed">Completed</router-link>
+          <router-link to="/completed">Completed </router-link>
         </div>
         <div @click="clearCompleted()">Clear Completed</div>
       </section>
@@ -48,29 +50,22 @@ export default {
   data() {
     return {
       todos: todoData,
+      drag: false,
     };
   },
   components: {
     Navigation,
   },
   computed: {
-    completedTodos() {
-      return this.todos.filter((todo) => todo.completed);
-    },
-    activeTodos() {
-      return this.todos.filter((todo) => !todo.completed);
-    },
+    // completedTodos() {
+    //   return this.todos.filter((todo) => todo.completed);
+    // },
+    // activeTodos() {
+    //   return this.todos.filter((todo) => !todo.completed);
+    // },
     todosLeft() {
       return this.todos.filter((todo) => !todo.completed).length;
     },
-  },
-
-  mounted() {
-    // this.todos = JSON.parse(localStorage.getItem("todos")) || [];
-    // this.$watch("todos", () => {
-    //   localStorage.setItem("todos", JSON.stringify(this.todos));
-    // });
-    // this.clearCompleted;
   },
 
   methods: {
@@ -83,14 +78,33 @@ export default {
     clearCompleted() {
       this.todos = this.getActiveTodos();
     },
+    dragTodos() {
+      return this.todos.filter((todo) => todo.drag);
+    },
+    getCompletedTodos(completed) {
+      return this.todos.filter((todo) => todo.completed === completed);
+    },
     markDone() {
       this.todos.completed = true;
+    },
+    startDrag(e, todo) {
+      e.dataTransfer.dropEffect = "move";
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("todoId", todo.id);
+      console.log(todo);
+      // this.drag = true;
+    },
+    onDrop(e) {
+      const todoId = e.dataTransfer.getData("todoId");
+      const todo = this.todos.find((todo) => todo.id === todoId);
+      const todoIndex = this.todos.indexOf(todo);
+      this.todos.splice(todoIndex, 1);
     },
   },
 };
 </script>
 
-<style>
+<style lang="scss">
 ul > li {
   list-style: none;
   padding: 0 10px;
@@ -106,7 +120,15 @@ ul > li {
   cursor: pointer;
   font-family: sans-serif;
   font-size: smaller;
-  color: hsl(235, 19%, 35%);
+  color: hsl(233, 10%, 64%);
+}
+
+.todo-details {
+  a {
+    &:hover {
+      color: hsl(233, 10%, 64%);
+    }
+  }
 }
 
 .todo-status {
@@ -114,17 +136,23 @@ ul > li {
   justify-content: space-between;
   padding: 0 10px;
   gap: 8px;
-}
+  font-weight: 700;
 
-.all-todos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  margin: auto auto;
-  margin-top: -28px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
+  a {
+    font-weight: bold;
+    // color: hsl(235, 19%, 35%);
+    color: hsl(233, 10%, 64%);
+
+    text-decoration: none;
+
+    &.router-link-exact-active {
+      color: hsl(220, 98%, 61%);
+    }
+    &:hover {
+      // color: hsl(240, 100%, 100%);
+      color: var(--todo-item-text);
+    }
+  }
 }
 
 .delete-todo {

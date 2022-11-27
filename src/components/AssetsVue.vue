@@ -1,10 +1,5 @@
 <template>
   <HelloWorld msg="Welcome to Your Vue.js App" />
-  <!-- <a href="https://github.com/vuejs/vue">
-        <IconCheck />
-        Icon
-      </a> -->
-  <!-- <IconCheck /> -->
   <img src="../assets/images/bg-desktop-dark.jpg" /> <br />
   <img src="../assets/images/bg-desktop-light.jpg" /> <br />
   <img src="../assets/images/BG-MOBILE-DARK.jpg" /> <br />
