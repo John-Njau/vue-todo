@@ -5,6 +5,8 @@ export default {
     tasks: [],
   },
   mutations: {
+    // setTasks(state, tasks) {},
+
     addTask(state, task) {
       state.tasks.push(task);
     },
