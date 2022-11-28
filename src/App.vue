@@ -92,7 +92,6 @@ export default {
   height: 1.5rem;
   border: var(--todo-checkbox);
   border-radius: 50%;
-  // background-image: url("data:image/svg+xml;utf8<svg xmlns='http://www.w3.org/2000/svg' width='11' height='9'><path fill='none' stroke='#FFF' stroke-width='2' d='M1 4.304L3.696 7l6-6'/></svg>");
   background-image: url("./assets/images/ICON-CHECK.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -165,6 +164,8 @@ export default {
 .todo-list-item-label input::placeholder {
   color: hsl(236, 9%, 61%);
   font-weight: 500;
+  font-family: "Josefin Sans", sans-serif;
+
 }
 
 .todo-list-item-label {
