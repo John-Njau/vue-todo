@@ -143,6 +143,8 @@ export default {
   width: 100%;
 }
 
+
+
 .all-todos {
   display: flex;
   justify-content: center;
@@ -180,6 +182,7 @@ export default {
   background-color: transparent;
   height: 40px;
   color: var(--todo-input);
+  font-family: "Josefin Sans", sans-serif;
 }
 
 @media screen and (max-width: 768px) {
