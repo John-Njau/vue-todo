@@ -37,7 +37,6 @@
         <div @click="clearCompleted()">Clear Completed</div>
       </section>
       
-      <!-- <Navigation /> -->
     </div>
   </div>
   <div class="drag-drop">Drag and drop to reorder list</div>
@@ -45,7 +44,6 @@
 
 <script>
 import todoData from "../assets/data/todos.json";
-import Navigation from "./Navigation.vue";
 
 export default {
   data() {
@@ -54,16 +52,8 @@ export default {
       drag: false,
     };
   },
-  components: {
-    Navigation,
-  },
+
   computed: {
-    // completedTodos() {
-    //   return this.todos.filter((todo) => todo.completed);
-    // },
-    // activeTodos() {
-    //   return this.todos.filter((todo) => !todo.completed);
-    // },
     todosLeft() {
       return this.todos.filter((todo) => !todo.completed).length;
     },
@@ -92,8 +82,7 @@ export default {
       e.dataTransfer.dropEffect = "move";
       e.dataTransfer.effectAllowed = "move";
       e.dataTransfer.setData("todoId", todo.id);
-      console.log(todo);
-      // this.drag = true;
+      this.drag = true;
     },
     onDrop(e) {
       const todoId = e.dataTransfer.getData("todoId");

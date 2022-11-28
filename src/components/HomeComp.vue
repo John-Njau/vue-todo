@@ -39,15 +39,12 @@
         </label>
       </div>
     </div>
-    <!-- make a list of todos -->
     <TodoComp />
-    <!-- <Navigation /> -->
   </main>
 </template>
 
 <script>
 import TodoComp from "./TodoComp.vue";
-import Navigation from "./Navigation.vue";
 import taskData from "../assets/data/todos.json";
 
 export default {
@@ -55,7 +52,6 @@ export default {
   todos: [],
   components: {
     TodoComp,
-    Navigation,
   },
 
   data() {

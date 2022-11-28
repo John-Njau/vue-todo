@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Rubik:wght@400;700&display=swap");
 
 :root {
   // --checkbox-color: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
@@ -62,13 +62,14 @@ export default {
   }
 }
 
-*{
+* {
   margin: 0 0 0 0;
   // padding: 0 0 0 0;
 }
 
 #app {
-  font-family: "Rubik", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
+  // font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
@@ -203,7 +204,5 @@ export default {
   .todo-list-item-label {
     width: 90% !important;
   }
-
-
 }
 </style>
