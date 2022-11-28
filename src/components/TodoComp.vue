@@ -36,6 +36,7 @@
         </div>
         <div @click="clearCompleted()">Clear Completed</div>
       </section>
+      
       <!-- <Navigation /> -->
     </div>
   </div>
@@ -116,7 +117,7 @@ ul > li {
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
-  margin: 0 15px;
+  margin: 10px 15px;
   cursor: pointer;
   font-family: sans-serif;
   font-size: smaller;
@@ -134,7 +135,8 @@ ul > li {
 .todo-status {
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 10px 10px;
+  margin-top: auto;
   gap: 8px;
   font-weight: 700;
 
@@ -162,6 +164,24 @@ ul > li {
   /* font-weight: 600; */
   margin-right: 10px;
   float: right;
+  display: none;
+}
+
+.todo-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--todo-hr);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    // background-color: hsl(233, 11%, 84%);
+    .delete-todo {
+      display: block;
+    }
+  }
 }
 
 .drag-drop {

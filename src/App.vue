@@ -62,6 +62,11 @@ export default {
   }
 }
 
+*{
+  margin: 0 0 0 0;
+  // padding: 0 0 0 0;
+}
+
 #app {
   font-family: "Rubik", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -98,8 +103,6 @@ export default {
   appearance: none;
   cursor: pointer;
 }
-
-
 
 .todo-list-item input:hover {
   border-color: var(--checkbox-color);
@@ -175,5 +178,32 @@ export default {
   background-color: transparent;
   height: 40px;
   color: var(--todo-input);
+}
+
+@media screen and (max-width: 768px) {
+  .all-todos {
+    width: 90%;
+  }
+  .app-header {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--bg-desktop-color);
+    width: 100% !important;
+  }
+  .todo-input {
+    width: 90% !important;
+  }
+
+  .cross {
+    display: none !important;
+  }
+
+  .todo-list-item-label {
+    width: 90% !important;
+  }
+
+
 }
 </style>
