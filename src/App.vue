@@ -1,17 +1,17 @@
 <template>
   <main>
-    <HomeView />
-    <!-- <router-view /> -->
+    <!-- <HomeView /> -->
+    <router-view />
   </main>
 </template>
 
 <script>
-import HomeView from "./views/HomeView.vue";
+// import HomeView from "./views/HomeView.vue";
 
 export default {
   name: "App",
   components: {
-    HomeView,
+    // HomeView,
   },
 };
 </script>
@@ -139,8 +139,6 @@ export default {
   width: 100%;
 }
 
-
-
 .todo-page {
   display: flex;
   justify-content: center;
@@ -149,6 +147,26 @@ export default {
   margin: auto auto;
   margin-top: -28px;
   border-radius: 5px;
+}
+
+.todo-details {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin: 10px 15px;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: smaller;
+  color: hsl(233, 10%, 64%);
+}
+
+.todo-details {
+  padding: 10px 10px;
+  a {
+    &:hover {
+      color: hsl(233, 10%, 64%);
+    }
+  }
 }
 
 .theme-mode {
@@ -163,7 +181,6 @@ export default {
   color: hsl(236, 9%, 61%);
   font-weight: 500;
   font-family: "Josefin Sans", sans-serif;
-
 }
 
 .todo-label {

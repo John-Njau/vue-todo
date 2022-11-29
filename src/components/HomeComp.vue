@@ -6,34 +6,17 @@
         <span class="title"> {{ titleCaps }} </span>
         <span @click="switchTheme" class="theme-switch"> </span>
       </div>
-      <!-- input section to add todos -->
-      <div class="todo-input">
-        <label class="todo-label">
-          <input
-            type="text"
-            class="form-control"
-            v-model="todos.name"
-            @keyup.enter="addTodo"
-            placeholder="Create a new todo..."
-          />
-        </label>
-      </div>
     </div>
-    <TodoComp />
-    
   </main>
 </template>
-
-<script>
-import TodoComp from "../components/TodoComp.vue";
+  
+  <script>
 import taskData from "../assets/data/todos.json";
 
 export default {
   name: "HelloWorld",
   todos: [],
-  components: {
-    TodoComp,
-  },
+  components: {},
 
   data() {
     return {
@@ -54,35 +37,15 @@ export default {
   },
 
   methods: {
-    addTodo: function () {
-      if (!this.todos.name) {
-        return;
-      }
-      this.todos.push({
-        index: this.todos.length + 1,
-        name: this.todos.name,
-        completed: false,
-      });
-      // confirm that the todo has been added
-      console.log(this.todos);
-
-      // clear the input field
-      this.todos.name = "";
-    },
-
     switchTheme() {
       this.theme = this.theme === "light" ? "dark" : "light";
     },
-    // clear completed todos
-
-    // mark todo as completed
-
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+  
+  <!-- Add "scoped" attribute to limit CSS to this component only -->
+  <style scoped lang="scss">
 .title-theme {
   display: flex;
   justify-self: center;
@@ -121,3 +84,4 @@ export default {
   border: 1px solid hsl(233, 14%, 35%); //dark mode
 }
 </style>
+  

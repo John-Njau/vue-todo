@@ -7,8 +7,6 @@
           class="todo-list-item drag-el"
           draggable="true"
           @dragstart="startDrag($event, todo)"
-          v-for="todo in todos"
-          :key="todo.id"
         >
           <label class="todo-label">
             <input
@@ -32,41 +30,8 @@
           <hr class="hr" />
         </li>
       </ul>
-
-      <section class="todo-details">
-        <div>{{ todosLeft }} Items left</div>
-        <div class="todo-status">
-          <router-link to="/">All</router-link>
-          <router-link to="/active">Active {{ ActiveTodos }}</router-link>
-          <router-link to="/completed"
-            >Completed {{ CompletedTodos }}</router-link
-          >
-        </div>
-        <div @click="clearCompleted()">Clear Completed</div>
-      </section>
-      <!-- completed todos -->
-      <!-- <h2>Completed</h2>
-      <section v-if="CompletedTodos">
-        <div v-for="todo in getCompletedTodos()" :key="todo.id">
-          {{ todo.name }}
-        </div>
-      </section>
-      <section v-else>
-        <div>No completed todos</div>
-      </section> -->
-      <!-- Active Todos -->
-      <!-- <h2>Active</h2>
-      <section v-if="ActiveTodos">
-        <div v-for="todo in getActiveTodos()" :key="todo.id">
-          {{ todo.name }}
-        </div>
-      </section>
-      <section v-else>
-        <div>No active todos</div>
-      </section> -->
     </div>
   </div>
-  <div class="drag-drop">Drag and drop to reorder list</div>
 </template>
 
 <script>
@@ -79,6 +44,7 @@ export default {
       drag: false,
     };
   },
+  props: ["todo"],
 
   computed: {
     todosLeft() {
@@ -131,59 +97,6 @@ ul > li {
   padding: 0 10px;
   color: #fff;
   font-size: 1.2rem;
-}
-
-
-
-.todo-status {
-  display: flex;
-  justify-content: space-between;
-  margin-top: auto;
-  gap: 8px;
-  font-weight: 700;
-
-  a {
-    font-weight: bold;
-    // color: hsl(235, 19%, 35%);
-    color: hsl(233, 10%, 64%);
-
-    text-decoration: none;
-
-    &.router-link-exact-active {
-      color: hsl(220, 98%, 61%);
-    }
-    &:hover {
-      // color: hsl(240, 100%, 100%);
-      color: var(--todo-item-text);
-    }
-  }
-}
-
-.delete-todo {
-  cursor: pointer;
-  color: hsl(235, 19%, 35%);
-  font-size: 1.2rem;
-  /* font-weight: 600; */
-  margin-right: 10px;
-  float: right;
-  display: none;
-}
-
-.todo-list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--todo-bottom-border);
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-
-  &:hover {
-    // background-color: hsl(233, 11%, 84%);
-    .delete-todo {
-      display: block;
-    }
-  }
 }
 
 .drag-drop {
