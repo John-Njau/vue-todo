@@ -34,7 +34,7 @@
           <router-link to="/active">Active</router-link>
           <router-link to="/completed">Completed </router-link>
         </div>
-        <div @click="clearCompleted()">Clear Completed</div>
+        <div @click="clearCompleted">Clear Completed</div>
       </section>
       
     </div>
@@ -66,9 +66,9 @@ export default {
     getActiveTodos() {
       return this.todos.filter((todo) => !todo.completed).length;
     },
-    clearCompleted() {
-      this.todos = this.getActiveTodos();
-    },
+    // clearCompleted() {
+    //   this.todos = this.getActiveTodos();
+    // },
     dragTodos() {
       return this.todos.filter((todo) => todo.drag);
     },
