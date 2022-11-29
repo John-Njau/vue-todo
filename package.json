@@ -11,7 +11,8 @@
     "vue": "^3.2.13",
     "vue-easy-dnd": "^1.22.0",
     "vue-router": "^4.1.6",
-    "vuex": "^4.1.0"
+    "vuex": "^4.1.0",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@volar-plugins/vetur": "latest",

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    completed
-  </div>
+  
 </template>
 
 <script>

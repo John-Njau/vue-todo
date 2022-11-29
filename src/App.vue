@@ -1,17 +1,17 @@
 <template>
   <main>
-    <HomeComp />
+    <HomeView />
     <!-- <router-view /> -->
   </main>
 </template>
 
 <script>
-import HomeComp from "./components/HomeComp.vue";
+import HomeView from "./views/HomeView.vue";
 
 export default {
   name: "App",
   components: {
-    HomeComp,
+    HomeView,
   },
 };
 </script>
@@ -20,36 +20,35 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Rubik:wght@400;700&display=swap");
 
 :root {
-  // --checkbox-color: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-  --bg-desktop-color: hsl(236, 33%, 92%);
-  --checkbox-color: hsl(280, 87%, 65%);
-  --checkbox-shadow: hsl(192, 100%, 67%);
-  --bg-todo-card: hsl(0, 0%, 98%);
-  --header-bg: url(./assets/images/bg-desktop-light.jpg);
-  --theme-svg: url(./assets/images/ICON-MOON.svg);
+  --desktop-background: hsl(236, 33%, 92%);
+  --checkmark-color: hsl(280, 87%, 65%);
+  --checkmark-shadow: hsl(192, 100%, 67%);
+  --todo-card-background: hsl(0, 0%, 98%);
+  --top-background-image: url(./assets/images/bg-desktop-light.jpg);
+  --theme-icon: url(./assets/images/ICON-MOON.svg);
   --todo-checkbox: 1px solid hsl(236, 33%, 92%);
   --todo-item-text: hsl(235, 19%, 35%);
-  --todo-hr: hsl(236, 33%, 92%);
+  --todo-bottom-border: hsl(236, 33%, 92%);
   --todo-input: hsl(235, 19%, 35%);
 
   @media screen {
     &[data-theme="dark"] {
-      --bg-desktop-color: hsl(235, 21%, 11%);
-      --bg-todo-card: hsl(235, 24%, 19%);
-      --header-bg: url(./assets/images/bg-desktop-dark.jpg);
-      --theme-svg: url(./assets/images/ICON-SUN.svg);
+      --desktop-background: hsl(235, 21%, 11%);
+      --todo-card-background: hsl(235, 24%, 19%);
+      --top-background-image: url(./assets/images/bg-desktop-dark.jpg);
+      --theme-icon: url(./assets/images/ICON-SUN.svg);
       --todo-checkbox: 1px solid hsl(233, 14%, 35%);
       --todo-item-text: hsl(234, 39%, 85%);
-      --todo-hr: hsl(233, 14%, 35%);
+      --todo-bottom-border: hsl(233, 14%, 35%);
       --todo-input: hsl(234, 39%, 85%);
     }
-    .all-todos {
-      background-color: var(--bg-todo-card);
+    .todo-page {
+      background-color: var(--todo-card-background);
     }
-    .todo-theme-mode {
-      background-image: var(--header-bg);
+    .theme-mode {
+      background-image: var(--top-background-image);
     }
-    .todo-list-item-label::before {
+    .todo-label::before {
       border: var(--todo-checkbox);
     }
     &hover {
@@ -57,7 +56,7 @@ export default {
     }
 
     .hr {
-      border: 1px solid var(--todo-hr);
+      border: 1px solid var(--todo-bottom-border);
     }
   }
 }
@@ -73,13 +72,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
-  // font-size: 19px;
-  background: var(--bg-desktop-color);
+  font-size: 19px;
+  background: var(--desktop-background);
   height: 100vh;
 }
 
-.theme-switcher {
-  background-image: var(--theme-svg);
+.theme-switch {
+  background-image: var(--theme-icon);
   background-repeat: no-repeat;
   background-size: 1.5rem;
   background-position: center;
@@ -105,47 +104,44 @@ export default {
 }
 
 .todo-list-item input:hover {
-  border-color: var(--checkbox-color);
+  border-color: var(--checkmark-color);
 }
 
 .hr {
   /* border: 1px solid hsl(235, 19%, 35%); */
-  border: 1px solid var(--todo-hr);
+  border: 1px solid var(--todo-bottom-border);
   /* margin: 0 10px; */
 }
 
 .todo-list-item input:checked {
-  // box-shadow: 0 0 0 3px var(--checkbox-shadow);
+  // box-shadow: 0 0 0 3px var(--checkmark-shadow);
   background-size: 10px;
-  // border: 1px solid var(--checkbox-color);
-  // background-color: var(--checkbox-color);
+  // border: 1px solid var(--checkmark-color);
+  // background-color: var(--checkmark-color);
   background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   background-size: cover;
 }
 
 .todo-list-item input:checked + span {
-  // color: #272727;
   color: hsl(236, 9%, 61%);
   text-decoration: line-through;
-  border-color: var(--checkbox-color);
-  // box-shadow: 0 0 0 3px var(--checkbox-shadow);
+  border-color: var(--checkmark-color);
   background-size: 10px;
 }
-.todo-list-item-text {
-  // color: hsl(235, 19%, 35%);
+.todo-list-text {
   color: var(--todo-item-text);
   font-weight: 500;
   font-size: 16px;
 }
 
 .card,
-.todo-list-item-label {
+.todo-label {
   width: 100%;
 }
 
 
 
-.all-todos {
+.todo-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,22 +151,22 @@ export default {
   border-radius: 5px;
 }
 
-.todo-theme-mode {
-  background-image: var(--header-bg);
+.theme-mode {
+  background-image: var(--top-background-image);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   padding: 24px;
 }
 
-.todo-list-item-label input::placeholder {
+.todo-label input::placeholder {
   color: hsl(236, 9%, 61%);
   font-weight: 500;
   font-family: "Josefin Sans", sans-serif;
 
 }
 
-.todo-list-item-label {
+.todo-label {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -186,15 +182,15 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
-  .all-todos {
+  .todo-page {
     width: 90%;
   }
-  .app-header {
+  .title-theme {
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--bg-desktop-color);
+    color: var(--desktop-background);
     width: 100% !important;
   }
   .todo-input {
@@ -205,7 +201,7 @@ export default {
     display: none !important;
   }
 
-  .todo-list-item-label {
+  .todo-label {
     width: 90% !important;
   }
 }

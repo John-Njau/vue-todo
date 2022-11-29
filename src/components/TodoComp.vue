@@ -1,5 +1,5 @@
 <template>
-  <div class="all-todos">
+  <div class="todo-page">
     <!-- make a list of todos -->
     <div class="card">
       <ul class="todo-list" @dragover.prevent @dragenter.prevent>
@@ -10,9 +10,9 @@
           v-for="todo in todos"
           :key="todo.id"
         >
-          <label class="todo-list-item-label">
+          <label class="todo-label">
             <input type="checkbox" @onClick="markDone" />
-            <span class="todo-list-item-text">{{ todo.name }}</span>
+            <span class="todo-list-text">{{ todo.name }}</span>
           </label>
           <span class="delete-todo" title="Delete todo" @click="deleteTodo"
             ><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
@@ -161,7 +161,7 @@ ul > li {
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
-  border-bottom: 1px solid var(--todo-hr);
+  border-bottom: 1px solid var(--todo-bottom-border);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 

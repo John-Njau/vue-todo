@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-
-import Home from "@/components/TodoComp.vue";
-import ActiveTodo from "@/components/ActiveTodo.vue";
-import CompletedTodo from "@/components/CompletedTodo.vue";
+import Active from "../views/ActiveTodo.vue";
+import Completed from "../views/CompleteTodo.vue";
+import Home from "../views/HomeView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -13,15 +12,15 @@ const router = createRouter({
       component: Home,
     },
     {
-      path: "/active",
-      name: "ActiveTodo",
-      component: ActiveTodo,
+      path: "/completed",
+      name: "Completed",
+      component: Completed,
     },
     {
-      path: "/completed",
-      name: "CompletedTodo",
-      component: CompletedTodo,
-    },
+      path: "/active",
+      name: "Active",
+      component: Active,
+    }
   ],
 });
 
