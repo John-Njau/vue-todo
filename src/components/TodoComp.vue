@@ -7,8 +7,6 @@
           class="todo-list-item drag-el"
           draggable="true"
           @dragstart="startDrag($event, todo)"
-          v-for="todo in todos"
-          :key="todo.id"
         >
           <label class="todo-label">
             <input
@@ -32,44 +30,17 @@
           <hr class="hr" />
         </li>
       </ul>
-
-      <section class="todo-details">
-        <div>{{ todosLeft }} Items left</div>
-        <div class="todo-status">
-          <router-link to="/">All</router-link>
-          <router-link to="/active">Active {{ ActiveTodos }}</router-link>
-          <router-link to="/completed"
-            >Completed {{ CompletedTodos }}</router-link
-          >
-        </div>
-        <div @click="clearCompleted()">Clear Completed</div>
-      </section>
-      <!-- completed todos -->
-      <!-- <h2>Completed</h2>
-      <section v-if="CompletedTodos">
-        <div v-for="todo in getCompletedTodos()" :key="todo.id">
-          {{ todo.name }}
-        </div>
-      </section>
-      <section v-else>
-        <div>No completed todos</div>
-      </section> -->
-      <!-- Active Todos -->
-      <!-- <h2>Active</h2>
-      <section v-if="ActiveTodos">
-        <div v-for="todo in getActiveTodos()" :key="todo.id">
-          {{ todo.name }}
-        </div>
-      </section>
-      <section v-else>
-        <div>No active todos</div>
-      </section> -->
+      <!-- <Navigation /> -->
+      
     </div>
+    
   </div>
-  <div class="drag-drop">Drag and drop to reorder list</div>
+  
+  <!-- <div class="drag-drop">Drag and drop to reorder list</div> -->
 </template>
 
 <script>
+import Navigation from "./Navigation.vue";
 import todoData from "../assets/data/todos.json";
 
 export default {
@@ -79,6 +50,10 @@ export default {
       drag: false,
     };
   },
+  components: {
+    Navigation,
+  },
+  props: ["todo"],
 
   computed: {
     todosLeft() {
@@ -132,8 +107,6 @@ ul > li {
   color: #fff;
   font-size: 1.2rem;
 }
-
-
 
 .todo-status {
   display: flex;

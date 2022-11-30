@@ -81,11 +81,13 @@ export default {
       e.dataTransfer.setData("todoId", todo.id);
       this.drag = true;
     },
-    onDrop(e) {
-      const todoId = e.dataTransfer.getData("todoId");
-      const todo = this.todos.find((todo) => todo.id === todoId);
+    onDrop(event) {
+       const todoId = event.dataTransfer.getData("todoId");
+      const todo = this.todos.find(todo => todo.id == todoId);
       const todoIndex = this.todos.indexOf(todo);
+      const dropIndex = event.target.getAttribute("data-index");
       this.todos.splice(todoIndex, 1);
+      this.todos.splice(dropIndex, 0, todo);
     },
   },
 };

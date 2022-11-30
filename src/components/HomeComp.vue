@@ -14,7 +14,7 @@
 import taskData from "../assets/data/todos.json";
 
 export default {
-  name: "HelloWorld",
+  name: "HomeComp",
   todos: [],
   components: {},
 

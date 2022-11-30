@@ -42,7 +42,8 @@ export default {
       --todo-bottom-border: hsl(233, 14%, 35%);
       --todo-input: hsl(234, 39%, 85%);
     }
-    .todo-page {
+    .todo-page,
+    .nav-page {
       background-color: var(--todo-card-background);
     }
     .theme-mode {
@@ -68,7 +69,6 @@ export default {
 
 #app {
   font-family: "Josefin Sans", sans-serif;
-  // font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
@@ -110,7 +110,7 @@ export default {
 .hr {
   /* border: 1px solid hsl(235, 19%, 35%); */
   border: 1px solid var(--todo-bottom-border);
-  /* margin: 0 10px; */
+  // margin: 10px 0;
 }
 
 .todo-list-item input:checked {
@@ -139,6 +139,26 @@ export default {
   width: 100%;
 }
 
+.nav-page {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  // margin: auto auto;
+  margin: 0 auto;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: smaller;
+  color: hsl(233, 10%, 64%);
+  border-radius: 5px;
+  padding: 10px 1px;
+  a {
+    &:hover {
+      color: hsl(233, 10%, 64%);
+    }
+  }
+}
+
 .todo-page {
   display: flex;
   justify-content: center;
@@ -149,25 +169,38 @@ export default {
   border-radius: 5px;
 }
 
-.todo-details {
+.todo-status {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 20px;
-  margin: 10px 15px;
-  cursor: pointer;
-  font-family: sans-serif;
-  font-size: smaller;
-  color: hsl(233, 10%, 64%);
-}
+  margin-top: auto;
+  gap: 8px;
+  font-weight: 700;
 
-.todo-details {
-  padding: 10px 10px;
   a {
+    font-weight: bold;
+    // color: hsl(235, 19%, 35%);
+    color: hsl(233, 10%, 64%);
+
+    text-decoration: none;
+
+    &.router-link-exact-active {
+      color: hsl(220, 98%, 61%);
+    }
     &:hover {
-      color: hsl(233, 10%, 64%);
+      // color: hsl(240, 100%, 100%);
+      color: var(--todo-item-text);
     }
   }
 }
+
+// .todo-details {
+//   padding: 10px 10px;
+//   a {
+//     &:hover {
+//       color: hsl(233, 10%, 64%);
+//     }
+//   }
+// }
 
 .theme-mode {
   background-image: var(--top-background-image);
@@ -199,7 +232,8 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
-  .todo-page {
+  .todo-page,
+  .nav-page {
     width: 90%;
   }
   .title-theme {

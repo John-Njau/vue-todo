@@ -1,19 +1,19 @@
 <template>
   <main>
     <HomeComp />
-    <TodoCard
+    <TodoComp
       v-for="(todo, index) in todos"
       :key="index"
-      :todo="todo"
-    ></TodoCard>
+      :todo="todo">
+    </TodoComp>
     <Navigation />
-    <div class="drag-drop">Drag and drop to reorder list</div>
   </main>
 </template>
 
 <script>
 import HomeComp from "@/components/HomeComp.vue";
 import TodoCard from "@/components/TodoCard.vue";
+import TodoComp from "@/components/TodoComp.vue";
 import Navigation from "@/components/Navigation.vue";
 import todoData from "../assets/data/todos.json";
 
@@ -27,55 +27,14 @@ export default {
   components: {
     HomeComp,
     TodoCard,
+    TodoComp,
     Navigation,
   },
 };
 </script>
 
 <style lang="scss">
-.todo-details {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 20px;
-  margin: 10px 15px;
-  cursor: pointer;
-  font-family: sans-serif;
-  font-size: smaller;
-  color: hsl(233, 10%, 64%);
-}
 
-.todo-details {
-  padding: 10px 10px;
-  a {
-    &:hover {
-      color: hsl(233, 10%, 64%);
-    }
-  }
-}
-
-.todo-status {
-  display: flex;
-  justify-content: space-between;
-  margin-top: auto;
-  gap: 8px;
-  font-weight: 700;
-
-  a {
-    font-weight: bold;
-    // color: hsl(235, 19%, 35%);
-    color: hsl(233, 10%, 64%);
-
-    text-decoration: none;
-
-    &.router-link-exact-active {
-      color: hsl(220, 98%, 61%);
-    }
-    &:hover {
-      // color: hsl(240, 100%, 100%);
-      color: var(--todo-item-text);
-    }
-  }
-}
 
 .delete-todo {
   cursor: pointer;

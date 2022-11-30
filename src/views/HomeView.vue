@@ -1,7 +1,7 @@
 <template>
   <main>
     <!-- switch themes -->
-    <div class="container-fluid theme-mode">
+    <div class="theme-mode">
       <div class="title-theme">
         <span class="title"> {{ titleCaps }} </span>
         <span @click="switchTheme" class="theme-switch"> </span>
@@ -19,20 +19,22 @@
         </label>
       </div>
     </div>
-    <TodoComp />
-    
+    <TodoComp v-for="todo in todos" :key="todo.id" :todo="todo" />
+    <Navigation />
   </main>
 </template>
 
 <script>
 import TodoComp from "../components/TodoComp.vue";
+import Navigation from "@/components/Navigation.vue";
 import taskData from "../assets/data/todos.json";
 
 export default {
-  name: "HelloWorld",
+  name: "HomeView",
   todos: [],
   components: {
     TodoComp,
+    Navigation,
   },
 
   data() {
@@ -76,7 +78,6 @@ export default {
     // clear completed todos
 
     // mark todo as completed
-
   },
 };
 </script>
