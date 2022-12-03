@@ -1,5 +1,5 @@
 <template>
-  <div class="todo-page">
+  <div class="todo-card">
     <!-- make a list of todos -->
     <div class="card">
       <ul class="todo-list" @dragover.prevent @dragenter.prevent>
@@ -27,7 +27,7 @@
               />
             </svg>
           </span>
-          <hr class="hr" />
+          <!-- <hr class="hr" /> -->
         </li>
       </ul>
     </div>

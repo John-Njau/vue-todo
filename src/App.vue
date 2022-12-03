@@ -42,7 +42,7 @@ export default {
       --todo-bottom-border: hsl(233, 14%, 35%);
       --todo-input: hsl(234, 39%, 85%);
     }
-    .todo-page,
+    .todo-card,
     .nav-page {
       background-color: var(--todo-card-background);
     }
@@ -86,6 +86,23 @@ export default {
   height: 2rem;
 }
 
+.todo-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  // border-bottom: 1px solid var(--todo-bottom-border);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    // background-color: hsl(233, 11%, 84%);
+    .delete-todo {
+      display: block;
+    }
+  }
+}
+
 .todo-list-item input {
   width: 1.5rem;
   height: 1.5rem;
@@ -96,9 +113,8 @@ export default {
   background-position: center;
   background-size: 0px;
   transition: 0.2s;
-  margin-right: 18px;
   flex-shrink: 0;
-  margin-top: 14px;
+  margin: 0px 18px 14px 0;
   appearance: none;
   cursor: pointer;
 }
@@ -134,8 +150,12 @@ export default {
   font-size: 16px;
 }
 
-.card,
 .todo-label {
+  width: 100%;
+}
+
+.card {
+  // border-bottom: 1px solid var(--todo-bottom-border);
   width: 100%;
 }
 
@@ -159,7 +179,7 @@ export default {
   }
 }
 
-.todo-page {
+.todo-card {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -216,11 +236,11 @@ export default {
   font-family: "Josefin Sans", sans-serif;
 }
 
-.todo-label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
+// .todo-label {
+//   display: flex;
+//   align-items: center;
+//   cursor: pointer;
+// }
 
 .todo-input input {
   border: none;
@@ -232,7 +252,7 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
-  .todo-page,
+  .todo-card,
   .nav-page {
     width: 90%;
   }
@@ -255,5 +275,11 @@ export default {
   .todo-label {
     width: 90% !important;
   }
+}
+
+.complete-active {
+  display: flex;
+  justify-content: center;
+  margin: 32px;
 }
 </style>

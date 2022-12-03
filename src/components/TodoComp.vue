@@ -1,5 +1,5 @@
 <template>
-  <div class="todo-page">
+  <div class="todo-card">
     <!-- make a list of todos -->
     <div class="card">
       <ul class="todo-list" @dragover.prevent @dragenter.prevent>
@@ -27,15 +27,12 @@
               />
             </svg>
           </span>
-          <hr class="hr" />
+          <!-- <hr class="hr" /> -->
         </li>
       </ul>
       <!-- <Navigation /> -->
-      
     </div>
-    
   </div>
-  
   <!-- <div class="drag-drop">Drag and drop to reorder list</div> -->
 </template>
 
@@ -140,23 +137,6 @@ ul > li {
   margin-right: 10px;
   float: right;
   display: none;
-}
-
-.todo-list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--todo-bottom-border);
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-
-  &:hover {
-    // background-color: hsl(233, 11%, 84%);
-    .delete-todo {
-      display: block;
-    }
-  }
 }
 
 .drag-drop {

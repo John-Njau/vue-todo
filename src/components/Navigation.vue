@@ -30,18 +30,8 @@ export default {
   
   },
   methods: {
-    ...mapActions(["deleteTodo", "clearCompleted", "dragTodos", "getActiveTodos", "getCompletedTodos"]),
-    // dragTodos() {
-    //   return this.todos.filter((todo) => todo.drag);
-    // },
-    // getActiveTodos() {
-    //   return this.todos.filter((todo) => !todo.completed);
-    // },
-    // getCompletedTodos() {
-    //   return this.todos.filter((todo) => todo.completed);
-    // },
-  
-   
+    ...mapActions(["clearCompleted"]),
+
   },
 };
 </script>
