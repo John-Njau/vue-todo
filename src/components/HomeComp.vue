@@ -9,9 +9,10 @@
     </div>
   </main>
 </template>
-    
-<script>
+  
+  <script>
 import taskData from "../assets/data/todos.json";
+
 export default {
   name: "HomeComp",
   todos: [],
@@ -40,23 +41,25 @@ export default {
   },
 };
 </script>
-    
-    <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-// .title-theme {
-//   display: flex;
-//   justify-self: center;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: 1rem;
-//   width: 50%;
-//   // margin: auto auto;
-// }
-// .title {
-//   font-size: 2.5rem;
-//   font-weight: 700;
-//   color: #fff;
-// }
+  
+  <!-- Add "scoped" attribute to limit CSS to this component only -->
+  <style scoped lang="scss">
+.title-theme {
+  display: flex;
+  justify-self: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  width: 50%;
+  // margin: auto auto;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
 // .todo-input {
 //   display: flex;
 //   justify-content: center;
@@ -78,3 +81,4 @@ export default {
 //   border: 1px solid hsl(233, 14%, 35%); //dark mode
 // }
 </style>
+  

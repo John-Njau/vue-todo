@@ -1,12 +1,16 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
-import todoModule from './modules/todo.js'
+// import Vuex from 'vuex'
+import { createStore } from 'vuex'
+
+
+// Vue.use(Vuex)
+import todoMod from './modules/todo.js'
 import createPersistedState from "vuex-persistedstate";
 
 
-Vue.use(Vuex)
+// Vue.use(Vuex)
 
-export default new Vuex.Store({
+export default createStore({
   state: {
   },
   getters: {
@@ -16,7 +20,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    todoModule: todoModule
+    todoModule: todoMod
   },
   plugins: [createPersistedState()],
 

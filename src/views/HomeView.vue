@@ -1,16 +1,18 @@
 <template>
   <main>
-    <!-- <HomeComp /> -->
+    <HomeComp />
     <!-- switch themes -->
-    <div class="container-fluid theme-mode">
-      <div class="title-theme">
+    <!-- <div class="title-theme">
         <span class="title"> {{ titleCaps }} </span>
-        <span @click="switchTheme" class="theme-switch">
+        <span @click="switchTheme" class="theme-switch"> </span>
+      </div> -->
+    <!-- input section to add todos -->
+    <div class="todo-input">
+      <label class="todo-label">
+        <span>
+          <input type="checkbox" class="todo-label-checkbox" id="" />
         </span>
-      </div>
-      <!-- input section to add todos -->
-      <div class="todo-input">
-        <label class="todo-label">
+        <span>
           <input
             type="text"
             class="form-control"
@@ -18,23 +20,27 @@
             @keyup.enter="addTodo"
             placeholder="Create a new todo..."
           />
-        </label>
-      </div>
+        </span>
+      </label>
     </div>
-    <TodoComp />
+    <TodoComp v-for="todo in todos" :key="todo.id" :todo="todo" />
+
+    <Navigation />
   </main>
 </template>
 
 <script>
 import HomeComp from "@/components/HomeComp.vue";
-import TodoComp from "@/components/TodoComp.vue";
+import TodoComp from "../components/TodoComp.vue";
+import Navigation from "@/components/Navigation.vue";
 import taskData from "../assets/data/todos.json";
 
 export default {
-  name: "HelloWorld",
+  name: "HomeView",
   todos: [],
   components: {
     TodoComp,
+    Navigation,
     HomeComp,
   },
 
@@ -62,20 +68,53 @@ export default {
         return;
       }
       this.todos.push({
+        index: this.todos.length + 1,
         name: this.todos.name,
         completed: false,
       });
+      // confirm that the todo has been added
+      // console.log(this.todos);
+
+      // clear the input field
       this.todos.name = "";
     },
 
     switchTheme() {
       this.theme = this.theme === "light" ? "dark" : "light";
-    }
+    },
+    // clear completed todos
+
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.todo-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -64px auto 3rem auto;
+  width: 50%;
+  background-color: var(--todo-card-background);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
 
+.todo-label {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+}
+
+.todo-label-checkbox {
+  width: 1.4rem;
+  height: 1.4rem;
+  border: var(--todo-checkbox);
+  border-radius: 50%;
+  appearance: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
 </style>

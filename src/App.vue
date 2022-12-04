@@ -1,17 +1,14 @@
 <template>
   <main>
-    <HomeView />
-    <!-- <router-view /> -->
+    <router-view />
   </main>
 </template>
 
 <script>
-import HomeView from "./views/HomeView.vue";
 
 export default {
   name: "App",
   components: {
-    HomeView,
   },
 };
 </script>
@@ -42,7 +39,8 @@ export default {
       --todo-bottom-border: hsl(233, 14%, 35%);
       --todo-input: hsl(234, 39%, 85%);
     }
-    .todo-page {
+    .todo-card,
+    .nav-page {
       background-color: var(--todo-card-background);
     }
     .theme-mode {
@@ -58,6 +56,9 @@ export default {
     .hr {
       border: 1px solid var(--todo-bottom-border);
     }
+    .complete-active {
+      color: var(--todo-item-text);
+    }
   }
 }
 
@@ -68,7 +69,6 @@ export default {
 
 #app {
   font-family: "Josefin Sans", sans-serif;
-  // font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
@@ -86,45 +86,32 @@ export default {
   height: 2rem;
 }
 
-.title-theme {
+.todo-list{
+  list-style: none;
+  // border: 1px solid red;
+  margin: 12px;
+  padding: 4px;
+  // border-bottom: 2px solid red;
+}
+
+.todo-list-item {
   display: flex;
-  justify-self: center;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  width: 50%;
-  margin: auto auto;
+  // padding: 10px 0;
+  // border-bottom: 1px solid var(--todo-bottom-border);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    // background-color: hsl(233, 11%, 84%);
+    .delete-todo {
+      display: block;
+    }
+  }
 }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.todo-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem auto;
-  width: 50%;
-  background-color: var(--todo-card-background);
-  border-radius: 0.5rem;
-  padding: 1rem;
-}
-
-.todo-label::before {
-  content: "";
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 1rem;
-  border-radius: 50%;
-  background-color: var(--todo-card-background);
-  border: 1px solid hsl(233, 14%, 35%); //dark mode
-}
-
-.todo-list-item input {
+.todo-checkbox {
   width: 1.5rem;
   height: 1.5rem;
   border: var(--todo-checkbox);
@@ -134,24 +121,24 @@ export default {
   background-position: center;
   background-size: 0px;
   transition: 0.2s;
-  margin-right: 18px;
   flex-shrink: 0;
-  margin-top: 14px;
+  // margin: 0px 18px 14px 0;
   appearance: none;
   cursor: pointer;
+  margin-right: 0.5rem;
 }
 
-.todo-list-item input:hover {
+.todo-checkbox:hover {
   border-color: var(--checkmark-color);
 }
 
 .hr {
   /* border: 1px solid hsl(235, 19%, 35%); */
   border: 1px solid var(--todo-bottom-border);
-  /* margin: 0 10px; */
+  // margin: 10px 0;
 }
 
-.todo-list-item input:checked {
+.todo-checkbox:checked {
   // box-shadow: 0 0 0 3px var(--checkmark-shadow);
   background-size: 10px;
   // border: 1px solid var(--checkmark-color);
@@ -160,31 +147,132 @@ export default {
   background-size: cover;
 }
 
-.todo-list-item input:checked + span {
+
+.todo-checkbox:checked + span {
   color: hsl(236, 9%, 61%);
   text-decoration: line-through;
   border-color: var(--checkmark-color);
   background-size: 10px;
 }
+
+
 .todo-list-text {
   color: var(--todo-item-text);
   font-weight: 500;
   font-size: 16px;
 }
 
-.card,
 .todo-label {
   width: 100%;
 }
 
-.todo-page {
+.nav-page {
+  width: 50%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  // margin: auto auto;
+  margin: 0 auto;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: smaller;
+  color: hsl(233, 10%, 64%);
+  border-radius: 5px;
+  padding: 10px 11px;
+  a {
+    &:hover {
+      color: hsl(233, 10%, 64%);
+    }
+  }
+}
+
+.todo-card {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // border-bottom: 1px solid var(--todo-bottom-border);
+  padding: 12px;
   width: 50%;
   margin: auto auto;
   margin-top: -28px;
   border-radius: 5px;
+}
+
+.todo-list li{
+  border-bottom: 1px solid var(--todo-bottom-border);
+  // padding: 10px 0;
+}
+
+.todo-status {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  gap: 8px;
+  font-weight: 700;
+
+  a {
+    font-weight: bold;
+    // color: hsl(235, 19%, 35%);
+    color: hsl(233, 10%, 64%);
+
+    text-decoration: none;
+
+    &.router-link-exact-active {
+      color: hsl(220, 98%, 61%);
+    }
+    &:hover {
+      // color: hsl(240, 100%, 100%);
+      color: var(--todo-item-text);
+    }
+  }
+}
+
+.delete-todo {
+  cursor: pointer;
+  margin-right: 10px;
+  float: right;
+}
+
+.drag-drop {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: auto auto;
+  margin-top: 40px;
+  color: hsl(235, 19%, 35%);
+}
+
+.todo-status {
+  display: flex;
+  justify-content: space-between;
+  // margin-top: auto;
+  gap: 8px;
+  font-weight: 700;
+
+  a {
+    font-weight: bold;
+    // color: hsl(235, 19%, 35%);
+    color: hsl(233, 10%, 64%);
+
+    text-decoration: none;
+
+    &.router-link-exact-active {
+      color: hsl(220, 98%, 61%);
+    }
+    &:hover {
+      // color: hsl(240, 100%, 100%);
+      color: var(--todo-item-text);
+    }
+  }
+}
+
+.todo-details {
+  padding: 10px 10px;
+  a {
+    &:hover {
+      color: hsl(233, 10%, 64%);
+    }
+  }
 }
 
 .theme-mode {
@@ -192,19 +280,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding: 24px;
-}
-
-.todo-label input::placeholder {
-  color: hsl(236, 9%, 61%);
-  font-weight: 500;
-  font-family: "Josefin Sans", sans-serif;
-}
-
-.todo-label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+  padding: 44px;
 }
 
 .todo-input input {
@@ -214,10 +290,18 @@ export default {
   height: 40px;
   color: var(--todo-input);
   font-family: "Josefin Sans", sans-serif;
+  margin: auto auto;
+}
+
+.title-theme{
+  // font-size: 1.5rem;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 768px) {
-  .todo-page {
+  .todo-card,
+  .nav-page {
     width: 90%;
   }
   .title-theme {
@@ -240,4 +324,12 @@ export default {
     width: 90% !important;
   }
 }
+
+.complete-active {
+  display: flex;
+  justify-content: center;
+  margin: 32px;
+}
+
+
 </style>
