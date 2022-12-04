@@ -1,5 +1,0 @@
-clear completed
-Items left, decrease on check
-drag and drop -- drop not working
-check mark -- white
-separate the details and status bar for small screens
