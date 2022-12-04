@@ -1,15 +1,18 @@
 <template>
   <main>
-      <HomeComp />
+    <HomeComp />
     <!-- switch themes -->
-    <div class="">
-      <!-- <div class="title-theme">
+    <!-- <div class="title-theme">
         <span class="title"> {{ titleCaps }} </span>
         <span @click="switchTheme" class="theme-switch"> </span>
       </div> -->
-      <!-- input section to add todos -->
-      <div class="todo-input">
-        <label class="todo-label">
+    <!-- input section to add todos -->
+    <div class="todo-input">
+      <label class="todo-label">
+        <span>
+          <input type="checkbox" class="todo-label-checkbox" id="" />
+        </span>
+        <span>
           <input
             type="text"
             class="form-control"
@@ -17,11 +20,10 @@
             @keyup.enter="addTodo"
             placeholder="Create a new todo..."
           />
-        </label>
-      </div>
+        </span>
+      </label>
     </div>
     <TodoComp v-for="todo in todos" :key="todo.id" :todo="todo" />
-
 
     <Navigation />
   </main>
@@ -39,7 +41,7 @@ export default {
   components: {
     TodoComp,
     Navigation,
-    HomeComp
+    HomeComp,
   },
 
   data() {
@@ -71,7 +73,7 @@ export default {
         completed: false,
       });
       // confirm that the todo has been added
-      console.log(this.todos);
+      // console.log(this.todos);
 
       // clear the input field
       this.todos.name = "";
@@ -82,49 +84,37 @@ export default {
     },
     // clear completed todos
 
-    // mark todo as completed
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.title-theme {
-  display: flex;
-  justify-self: center;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  width: 50%;
-  margin: auto auto;
-}
-
-.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #fff;
-}
-
 .todo-input {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: -55px auto 1rem auto;
+  margin: -64px auto 3rem auto;
   width: 50%;
   background-color: var(--todo-card-background);
   border-radius: 0.5rem;
   padding: 1rem;
 }
 
-// .todo-label::before {
-//   content: "";
-//   display: inline-block;
-//   width: 1.5rem;
-//   height: 1.5rem;
-//   margin-right: 1rem;
-//   margin-top: 12px;
-//   border-radius: 50%;
-//   background-color: var(--todo-card-background);
-//   border: 1px solid hsl(233, 14%, 35%); //dark mode
-// }
+.todo-label {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+}
+
+.todo-label-checkbox {
+  width: 1.4rem;
+  height: 1.4rem;
+  border: var(--todo-checkbox);
+  border-radius: 50%;
+  appearance: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
 </style>

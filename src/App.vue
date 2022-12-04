@@ -229,12 +229,8 @@ export default {
 
 .delete-todo {
   cursor: pointer;
-  color: hsl(235, 19%, 35%);
-  font-size: 1.2rem;
-  /* font-weight: 600; */
   margin-right: 10px;
   float: right;
-  display: none;
 }
 
 .drag-drop {

@@ -4,6 +4,7 @@ export default {
   state: {
     todos: todoData,
     drag: false,
+    todo: {}
 
   },
   getters: {
