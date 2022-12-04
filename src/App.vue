@@ -86,6 +86,44 @@ export default {
   height: 2rem;
 }
 
+.title-theme {
+  display: flex;
+  justify-self: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  width: 50%;
+  margin: auto auto;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.todo-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
+  width: 50%;
+  background-color: var(--todo-card-background);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.todo-label::before {
+  content: "";
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background-color: var(--todo-card-background);
+  border: 1px solid hsl(233, 14%, 35%); //dark mode
+}
+
 .todo-list-item input {
   width: 1.5rem;
   height: 1.5rem;
@@ -139,8 +177,6 @@ export default {
   width: 100%;
 }
 
-
-
 .todo-page {
   display: flex;
   justify-content: center;
@@ -163,7 +199,6 @@ export default {
   color: hsl(236, 9%, 61%);
   font-weight: 500;
   font-family: "Josefin Sans", sans-serif;
-
 }
 
 .todo-label {

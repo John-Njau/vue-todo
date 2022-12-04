@@ -1,5 +1,6 @@
 <template>
   <main>
+    <!-- <HomeComp /> -->
     <!-- switch themes -->
     <div class="container-fluid theme-mode">
       <div class="title-theme">
@@ -25,7 +26,8 @@
 </template>
 
 <script>
-import TodoComp from "../components/TodoComp.vue";
+import HomeComp from "@/components/HomeComp.vue";
+import TodoComp from "@/components/TodoComp.vue";
 import taskData from "../assets/data/todos.json";
 
 export default {
@@ -33,6 +35,7 @@ export default {
   todos: [],
   components: {
     TodoComp,
+    HomeComp,
   },
 
   data() {
@@ -74,43 +77,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.title-theme {
-  display: flex;
-  justify-self: center;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  width: 50%;
-  margin: auto auto;
-}
 
-.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.todo-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem auto;
-  width: 50%;
-  background-color: var(--todo-card-background);
-  border-radius: 0.5rem;
-  padding: 1rem;
-}
-
-
-
-.todo-label::before {
-  content: "";
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 1rem;
-  border-radius: 50%;
-  background-color: var(--todo-card-background);
-  border: 1px solid hsl(233, 14%, 35%) //dark mode
-}
 </style>
