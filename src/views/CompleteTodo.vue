@@ -3,11 +3,11 @@
     <HomeComp />
     <div class="complete-active">Completed Todos</div>
     <section v-if="completedTodos">
-      <TodoCard
+      <TodoComp
         v-for="(todo, index) in getCompletedTodos()"
         :key="index"
         :todo="todo"
-      ></TodoCard>
+      ></TodoComp>
     </section>
     <section v-else class="complete-active">
       <div>No completed todos</div>
@@ -18,7 +18,7 @@
 
 <script>
 import HomeComp from "@/components/HomeComp.vue";
-import TodoCard from "@/components/TodoCard.vue";
+import TodoComp from "@/components/TodoComp.vue";
 import Navigation from "@/components/Navigation.vue";
 import todoData from "../assets/data/todos.json";
 
@@ -34,7 +34,7 @@ export default {
   },
   components: {
     HomeComp,
-    TodoCard,
+    TodoComp,
     Navigation,
   },
 

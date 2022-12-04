@@ -1,10 +1,8 @@
 <template>
   <div class="todo-card">
     <!-- make a list of todos -->
-    <div class="card">
       <ul class="todo-list" @dragover.prevent @dragenter.prevent>
         <li
-          class="todo-list-item drag-el"
           draggable="true"
           @dragstart="startDrag($event, todo)"
         >
@@ -13,7 +11,7 @@
               type="checkbox"
               v-model="todo.completed"
               name="done"
-              id="done"
+              class="todo-checkbox"
               @onClick="markDone"
             />
             <span class="todo-list-text">{{ todo.name }}</span>
@@ -27,12 +25,15 @@
               />
             </svg>
           </span>
-          <!-- <hr class="hr" /> -->
+          
         </li>
+        <!-- <hr class="hr"/> -->
       </ul>
-      <!-- <Navigation /> -->
-    </div>
+     
   </div>
+  <!-- <Navigation /> -->
+            <!-- <hr class="hr" /> -->
+
   <!-- <div class="drag-drop">Drag and drop to reorder list</div> -->
 </template>
 
@@ -98,53 +99,11 @@ export default {
 </script>
 
 <style lang="scss">
-ul > li {
-  list-style: none;
-  padding: 0 10px;
-  color: #fff;
-  font-size: 1.2rem;
-}
+// ul > li {
+//   list-style: none;
+//   padding: 0 10px;
+//   color: #fff;
+//   font-size: 1.2rem;
+// }
 
-.todo-status {
-  display: flex;
-  justify-content: space-between;
-  margin-top: auto;
-  gap: 8px;
-  font-weight: 700;
-
-  a {
-    font-weight: bold;
-    // color: hsl(235, 19%, 35%);
-    color: hsl(233, 10%, 64%);
-
-    text-decoration: none;
-
-    &.router-link-exact-active {
-      color: hsl(220, 98%, 61%);
-    }
-    &:hover {
-      // color: hsl(240, 100%, 100%);
-      color: var(--todo-item-text);
-    }
-  }
-}
-
-.delete-todo {
-  cursor: pointer;
-  color: hsl(235, 19%, 35%);
-  font-size: 1.2rem;
-  /* font-weight: 600; */
-  margin-right: 10px;
-  float: right;
-  display: none;
-}
-
-.drag-drop {
-  display: flex;
-  justify-content: center;
-  width: 50%;
-  margin: auto auto;
-  margin-top: 40px;
-  color: hsl(235, 19%, 35%);
-}
 </style>

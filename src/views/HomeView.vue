@@ -1,11 +1,12 @@
 <template>
   <main>
+      <HomeComp />
     <!-- switch themes -->
-    <div class="theme-mode">
-      <div class="title-theme">
+    <div class="">
+      <!-- <div class="title-theme">
         <span class="title"> {{ titleCaps }} </span>
         <span @click="switchTheme" class="theme-switch"> </span>
-      </div>
+      </div> -->
       <!-- input section to add todos -->
       <div class="todo-input">
         <label class="todo-label">
@@ -20,11 +21,14 @@
       </div>
     </div>
     <TodoComp v-for="todo in todos" :key="todo.id" :todo="todo" />
+
+
     <Navigation />
   </main>
 </template>
 
 <script>
+import HomeComp from "@/components/HomeComp.vue";
 import TodoComp from "../components/TodoComp.vue";
 import Navigation from "@/components/Navigation.vue";
 import taskData from "../assets/data/todos.json";
@@ -35,6 +39,7 @@ export default {
   components: {
     TodoComp,
     Navigation,
+    HomeComp
   },
 
   data() {
@@ -104,21 +109,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem auto;
+  margin: -55px auto 1rem auto;
   width: 50%;
   background-color: var(--todo-card-background);
   border-radius: 0.5rem;
   padding: 1rem;
 }
 
-.todo-label::before {
-  content: "";
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 1rem;
-  border-radius: 50%;
-  background-color: var(--todo-card-background);
-  border: 1px solid hsl(233, 14%, 35%); //dark mode
-}
+// .todo-label::before {
+//   content: "";
+//   display: inline-block;
+//   width: 1.5rem;
+//   height: 1.5rem;
+//   margin-right: 1rem;
+//   margin-top: 12px;
+//   border-radius: 50%;
+//   background-color: var(--todo-card-background);
+//   border: 1px solid hsl(233, 14%, 35%); //dark mode
+// }
 </style>

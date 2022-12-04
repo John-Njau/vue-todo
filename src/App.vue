@@ -1,17 +1,14 @@
 <template>
   <main>
-    <!-- <HomeView /> -->
     <router-view />
   </main>
 </template>
 
 <script>
-// import HomeView from "./views/HomeView.vue";
 
 export default {
   name: "App",
   components: {
-    // HomeView,
   },
 };
 </script>
@@ -59,6 +56,9 @@ export default {
     .hr {
       border: 1px solid var(--todo-bottom-border);
     }
+    .complete-active {
+      color: var(--todo-item-text);
+    }
   }
 }
 
@@ -86,11 +86,19 @@ export default {
   height: 2rem;
 }
 
+.todo-list{
+  list-style: none;
+  // border: 1px solid red;
+  margin: 12px;
+  padding: 4px;
+  // border-bottom: 2px solid red;
+}
+
 .todo-list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  // padding: 10px 0;
   // border-bottom: 1px solid var(--todo-bottom-border);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -103,7 +111,7 @@ export default {
   }
 }
 
-.todo-list-item input {
+.todo-checkbox {
   width: 1.5rem;
   height: 1.5rem;
   border: var(--todo-checkbox);
@@ -114,12 +122,13 @@ export default {
   background-size: 0px;
   transition: 0.2s;
   flex-shrink: 0;
-  margin: 0px 18px 14px 0;
+  // margin: 0px 18px 14px 0;
   appearance: none;
   cursor: pointer;
+  margin-right: 0.5rem;
 }
 
-.todo-list-item input:hover {
+.todo-checkbox:hover {
   border-color: var(--checkmark-color);
 }
 
@@ -129,7 +138,7 @@ export default {
   // margin: 10px 0;
 }
 
-.todo-list-item input:checked {
+.todo-checkbox:checked {
   // box-shadow: 0 0 0 3px var(--checkmark-shadow);
   background-size: 10px;
   // border: 1px solid var(--checkmark-color);
@@ -138,12 +147,15 @@ export default {
   background-size: cover;
 }
 
-.todo-list-item input:checked + span {
+
+.todo-checkbox:checked + span {
   color: hsl(236, 9%, 61%);
   text-decoration: line-through;
   border-color: var(--checkmark-color);
   background-size: 10px;
 }
+
+
 .todo-list-text {
   color: var(--todo-item-text);
   font-weight: 500;
@@ -151,11 +163,6 @@ export default {
 }
 
 .todo-label {
-  width: 100%;
-}
-
-.card {
-  // border-bottom: 1px solid var(--todo-bottom-border);
   width: 100%;
 }
 
@@ -171,7 +178,7 @@ export default {
   font-size: smaller;
   color: hsl(233, 10%, 64%);
   border-radius: 5px;
-  padding: 10px 1px;
+  padding: 10px 11px;
   a {
     &:hover {
       color: hsl(233, 10%, 64%);
@@ -180,13 +187,20 @@ export default {
 }
 
 .todo-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // border-bottom: 1px solid var(--todo-bottom-border);
+  padding: 12px;
   width: 50%;
   margin: auto auto;
   margin-top: -28px;
   border-radius: 5px;
+}
+
+.todo-list li{
+  border-bottom: 1px solid var(--todo-bottom-border);
+  // padding: 10px 0;
 }
 
 .todo-status {
@@ -213,34 +227,65 @@ export default {
   }
 }
 
-// .todo-details {
-//   padding: 10px 10px;
-//   a {
-//     &:hover {
-//       color: hsl(233, 10%, 64%);
-//     }
-//   }
-// }
+.delete-todo {
+  cursor: pointer;
+  color: hsl(235, 19%, 35%);
+  font-size: 1.2rem;
+  /* font-weight: 600; */
+  margin-right: 10px;
+  float: right;
+  display: none;
+}
+
+.drag-drop {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: auto auto;
+  margin-top: 40px;
+  color: hsl(235, 19%, 35%);
+}
+
+.todo-status {
+  display: flex;
+  justify-content: space-between;
+  // margin-top: auto;
+  gap: 8px;
+  font-weight: 700;
+
+  a {
+    font-weight: bold;
+    // color: hsl(235, 19%, 35%);
+    color: hsl(233, 10%, 64%);
+
+    text-decoration: none;
+
+    &.router-link-exact-active {
+      color: hsl(220, 98%, 61%);
+    }
+    &:hover {
+      // color: hsl(240, 100%, 100%);
+      color: var(--todo-item-text);
+    }
+  }
+}
+
+.todo-details {
+  padding: 10px 10px;
+  a {
+    &:hover {
+      color: hsl(233, 10%, 64%);
+    }
+  }
+}
 
 .theme-mode {
   background-image: var(--top-background-image);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding: 24px;
+  padding: 44px;
 }
-
-.todo-label input::placeholder {
-  color: hsl(236, 9%, 61%);
-  font-weight: 500;
-  font-family: "Josefin Sans", sans-serif;
-}
-
-// .todo-label {
-//   display: flex;
-//   align-items: center;
-//   cursor: pointer;
-// }
 
 .todo-input input {
   border: none;
@@ -249,6 +294,13 @@ export default {
   height: 40px;
   color: var(--todo-input);
   font-family: "Josefin Sans", sans-serif;
+  margin: auto auto;
+}
+
+.title-theme{
+  // font-size: 1.5rem;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -282,4 +334,6 @@ export default {
   justify-content: center;
   margin: 32px;
 }
+
+
 </style>

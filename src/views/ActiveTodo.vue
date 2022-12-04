@@ -6,11 +6,11 @@
     </div>
     <!-- <HomeComp /> -->
     <section v-if="activeTodos">
-      <TodoCard
+      <TodoComp
         v-for="(todo, index) in getActiveTodos()"
         :key="index"
         :todo="todo"
-      ></TodoCard>
+      ></TodoComp>
     </section>
     <section class="complete-active" v-else>
       <div>No active todos</div>
@@ -21,7 +21,7 @@
 
 <script>
 import HomeComp from "@/components/HomeComp.vue";
-import TodoCard from "@/components/TodoCard.vue";
+import TodoComp from "@/components/TodoComp.vue";
 import Navigation from "@/components/Navigation.vue";
 
 // import from vuex
@@ -38,7 +38,7 @@ export default {
   },
   components: {
     HomeComp,
-    TodoCard,
+    TodoComp,
     Navigation,
   },
   computed: {

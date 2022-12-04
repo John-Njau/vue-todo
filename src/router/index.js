@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import Active from "../views/ActiveTodo.vue";
 import Completed from "../views/CompleteTodo.vue";
 import Home from "../views/HomeView.vue";
-import Base from "../views/Home.vue"
 
 const router = createRouter({
   history: createWebHistory(),
@@ -11,11 +10,6 @@ const router = createRouter({
       path: "/",
       name: "Home",
       component: Home,
-    },
-    {
-      path: "/home",
-      name: "Base",
-      component: Base,
     },
     {
       path: "/completed",
